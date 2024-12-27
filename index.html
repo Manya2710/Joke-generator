@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-cyan-400">
+    <div class="flex justify-center items-center">
+    <div class="m-20 p-10 bg-black rounded-xl " id="wrapper">
+        <span class="block text-center text-6xl pb-4">&#128514;</span>
+        <p class="block text-center text-white transition duration-500 ease-in-out" id="joke"></p>
+        <button class="bg-cyan-600 rounded-sm border-gray-50 block items-center my-4 mx-auto cursor-pointer px-2 py-1" id="btn">Get random</button>
+    </div>
+    </div>  
+    <script>
+        const btn = document.getElementById("btn");
+        const joke = document.getElementById("joke");
+        const url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+        let getJoke = () => {
+            fetch(url)
+            .then(data => data.json())
+            .then(item =>{
+                joke.textContent = `${item.joke}`
+            });
+        }
+        btn.addEventListener("click", getJoke);
+        getJoke();
+    </script>
+</body>
+</html>
